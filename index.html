@@ -4,108 +4,1431 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>شنوّة؟ — قارن الأسعار في تونس 🇹🇳</title>
+
 <style>
-:root{--bg:#f5f7fa;--card:#fff;--text:#10233d;--muted:#68778a;--line:#e3e8ef;--green:#16a34a;--blue:#0b2d4d}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Tahoma,sans-serif;background:var(--bg);color:var(--text)}
-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.nav{max-width:1250px;margin:auto;padding:13px 20px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:28px;font-weight:900}.logo span{color:#d71920}.nav a{color:var(--text);text-decoration:none;margin:0 12px;font-weight:700;font-size:14px}
-.hero{background:linear-gradient(110deg,#e9f5ff,#fff 55%,#dff3ff);padding:35px 20px 38px;text-align:center}.badge{display:inline-block;background:#e8f8ef;color:#138a46;padding:8px 14px;border-radius:999px;font-weight:800}.hero h1{font-size:clamp(35px,6vw,62px);margin:18px 0 12px;line-height:1.05}.hero h1 span{color:#159447}.hero p{color:#526173;font-size:18px;max-width:700px;margin:0 auto 22px;line-height:1.7}
-.search{max-width:760px;margin:auto;display:flex;background:#fff;border:1px solid #cfd8e3;border-radius:14px;padding:6px;box-shadow:0 8px 25px #16324d12}.search input{flex:1;border:0;outline:0;padding:14px;font-size:16px;text-align:right}.search button{border:0;border-radius:10px;padding:13px 22px;background:#159447;color:#fff;font-weight:900;cursor:pointer}
-.container{max-width:1250px;margin:auto;padding:30px 20px}.section-head{display:flex;justify-content:space-between;align-items:center;margin:0 0 15px}h2{margin:0;font-size:24px}.muted{color:var(--muted)}
-.store-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.store-card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px;box-shadow:0 3px 15px #16324d08}.store-top{display:flex;align-items:center;gap:9px;min-height:60px}.store-logo{width:48px;height:48px;border-radius:12px;object-fit:contain;background:#f1f4f7;padding:5px;border:1px solid var(--line)}.store-name{font-size:16px;margin:0 0 3px;font-weight:900}.store-type{font-size:11px;color:var(--muted);line-height:1.5}.store-info{border-top:1px solid var(--line);margin-top:10px;padding-top:9px;font-size:11px;line-height:1.8}.store-actions a{display:block;text-align:center;margin-top:9px;padding:8px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:900}.website{background:#0b2d4d;color:#fff}
-.categories{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.cat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 10px;text-align:center;font-weight:800;cursor:pointer}.cat:hover{border-color:#159447}
-.product-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}.product-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}.product-icon{font-size:40px;margin-bottom:7px}.product-card h3{font-size:14px;margin:5px 0}.product-card p{font-size:11px;color:var(--muted);line-height:1.5}.product-stores{font-size:11px;color:#159447;font-weight:800}
-.compare{margin-top:30px;background:#0b2d4d;color:#fff;border-radius:18px;padding:24px}.compare p{color:#d5e0eb;line-height:1.7}.compare .search{max-width:850px}.results{margin-top:30px;display:none}.result{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:9px;display:flex;justify-content:space-between;align-items:center}.result a{background:#0b2d4d;color:#fff;padding:8px 13px;border-radius:8px;text-decoration:none;font-size:12px}
-.empty{background:#fff;border:1px dashed #ccd5df;padding:25px;text-align:center;border-radius:12px;color:var(--muted)}
-footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid var(--line);margin-top:20px;font-size:13px}
-@media(max-width:1050px){.store-grid{grid-template-columns:repeat(3,1fr)}.categories{grid-template-columns:repeat(4,1fr)}.product-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:650px){.nav a{display:none}.store-grid,.categories,.product-grid{grid-template-columns:repeat(2,1fr)}.search{flex-direction:column}.search button{width:100%}.hero{padding-top:30px}.result{gap:10px}.result a{white-space:nowrap}}
+:root{
+--bg:#f5f7fa;
+--card:#fff;
+--text:#10233d;
+--muted:#68778a;
+--line:#e3e8ef;
+--green:#16a34a;
+--blue:#0b2d4d;
+--red:#dc2626
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,Tahoma,sans-serif;
+background:var(--bg);
+color:var(--text)
+}
+
+header{
+background:#fff;
+border-bottom:1px solid var(--line);
+position:sticky;
+top:0;
+z-index:20
+}
+
+.nav{
+max-width:1250px;
+margin:auto;
+padding:13px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+
+.logo{
+font-size:28px;
+font-weight:900
+}
+
+.logo span{
+color:#d71920
+}
+
+.nav a{
+color:var(--text);
+text-decoration:none;
+margin:0 10px;
+font-weight:700;
+font-size:14px
+}
+
+.hero{
+background:linear-gradient(110deg,#e9f5ff,#fff 55%,#dff3ff);
+padding:35px 20px 38px;
+text-align:center
+}
+
+.badge{
+display:inline-block;
+background:#e8f8ef;
+color:#138a46;
+padding:8px 14px;
+border-radius:999px;
+font-weight:800
+}
+
+.hero h1{
+font-size:clamp(35px,6vw,62px);
+margin:18px 0 12px;
+line-height:1.05
+}
+
+.hero h1 span{
+color:#159447
+}
+
+.hero p{
+color:#526173;
+font-size:18px;
+max-width:700px;
+margin:0 auto 22px;
+line-height:1.7
+}
+
+.search{
+max-width:760px;
+margin:auto;
+display:flex;
+background:#fff;
+border:1px solid #cfd8e3;
+border-radius:14px;
+padding:6px;
+box-shadow:0 8px 25px #16324d12
+}
+
+.search input{
+flex:1;
+border:0;
+outline:0;
+padding:14px;
+font-size:16px;
+text-align:right
+}
+
+.search button{
+border:0;
+border-radius:10px;
+padding:13px 22px;
+background:#159447;
+color:#fff;
+font-weight:900;
+cursor:pointer
+}
+
+.container{
+max-width:1250px;
+margin:auto;
+padding:30px 20px
+}
+
+.section-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:0 0 15px
+}
+
+h2{
+margin:0;
+font-size:24px
+}
+
+.muted{
+color:var(--muted)
+}
+
+/* المتاجر */
+.store-grid{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:12px
+}
+
+.store-card{
+background:#fff;
+border:1px solid var(--line);
+border-radius:13px;
+padding:12px;
+box-shadow:0 3px 15px #16324d08
+}
+
+.store-top{
+display:flex;
+align-items:center;
+gap:9px;
+min-height:60px
+}
+
+.store-logo{
+width:48px;
+height:48px;
+border-radius:12px;
+object-fit:contain;
+background:#f1f4f7;
+padding:5px;
+border:1px solid var(--line)
+}
+
+.store-name{
+font-size:16px;
+margin:0 0 3px;
+font-weight:900
+}
+
+.store-type{
+font-size:11px;
+color:var(--muted);
+line-height:1.5
+}
+
+.store-info{
+border-top:1px solid var(--line);
+margin-top:10px;
+padding-top:9px;
+font-size:11px;
+line-height:1.8
+}
+
+.store-actions a{
+display:block;
+text-align:center;
+margin-top:9px;
+padding:8px;
+border-radius:8px;
+text-decoration:none;
+font-size:12px;
+font-weight:900
+}
+
+.website{
+background:#0b2d4d;
+color:#fff
+}
+
+/* التصنيفات */
+.categories{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:10px
+}
+
+.cat{
+background:#fff;
+border:1px solid var(--line);
+border-radius:12px;
+padding:16px 10px;
+text-align:center;
+font-weight:800;
+cursor:pointer
+}
+
+.cat:hover{
+border-color:#159447
+}
+
+/* المنتجات */
+.product-grid{
+display:grid;
+grid-template-columns:repeat(8,1fr);
+gap:10px
+}
+
+.product-card{
+background:#fff;
+border:1px solid var(--line);
+border-radius:12px;
+padding:12px;
+text-align:center
+}
+
+.product-icon{
+font-size:40px;
+margin-bottom:7px
+}
+
+.product-card h3{
+font-size:14px;
+margin:5px 0
+}
+
+.product-card p{
+font-size:11px;
+color:var(--muted);
+line-height:1.5
+}
+
+.product-stores{
+font-size:11px;
+color:#159447;
+font-weight:800
+}
+
+/* عروض اليوم */
+.deals{
+margin-top:38px
+}
+
+.deals-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:14px
+}
+
+.deal-card{
+background:#fff;
+border:1px solid var(--line);
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 4px 18px #16324d0a;
+position:relative
+}
+
+.deal-top{
+padding:18px;
+text-align:center;
+background:linear-gradient(135deg,#fff7ed,#fff)
+}
+
+.deal-icon{
+font-size:48px;
+margin-bottom:6px
+}
+
+.discount{
+position:absolute;
+top:10px;
+left:10px;
+background:#dc2626;
+color:#fff;
+padding:6px 9px;
+border-radius:999px;
+font-size:12px;
+font-weight:900
+}
+
+.deal-body{
+padding:14px
+}
+
+.deal-name{
+font-size:16px;
+font-weight:900;
+margin:0 0 7px
+}
+
+.old-price{
+text-decoration:line-through;
+color:#8a96a3;
+font-size:13px
+}
+
+.new-price{
+font-size:22px;
+font-weight:900;
+color:#159447;
+margin:3px 0
+}
+
+.deal-store{
+font-size:12px;
+color:var(--muted);
+margin:7px 0 12px
+}
+
+.deal-button{
+display:block;
+text-align:center;
+background:#0b2d4d;
+color:#fff;
+text-decoration:none;
+padding:9px;
+border-radius:9px;
+font-size:12px;
+font-weight:900
+}
+
+.demo-note{
+font-size:11px;
+color:#b45309;
+margin-top:8px;
+text-align:center
+}
+
+/* المقارنة والتنبيه */
+.compare{
+margin-top:30px;
+background:#0b2d4d;
+color:#fff;
+border-radius:18px;
+padding:24px
+}
+
+.compare p{
+color:#d5e0eb;
+line-height:1.7
+}
+
+.compare .search{
+max-width:850px
+}
+
+/* النتائج */
+.results{
+margin-top:30px;
+display:none
+}
+
+.result{
+background:#fff;
+border:1px solid var(--line);
+border-radius:12px;
+padding:14px;
+margin-top:9px;
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.result a{
+background:#0b2d4d;
+color:#fff;
+padding:8px 13px;
+border-radius:8px;
+text-decoration:none;
+font-size:12px
+}
+
+.empty{
+background:#fff;
+border:1px dashed #ccd5df;
+padding:25px;
+text-align:center;
+border-radius:12px;
+color:var(--muted)
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:var(--muted);
+border-top:1px solid var(--line);
+margin-top:20px;
+font-size:13px
+}
+
+@media(max-width:1050px){
+
+.store-grid{
+grid-template-columns:repeat(3,1fr)
+}
+
+.categories{
+grid-template-columns:repeat(4,1fr)
+}
+
+.product-grid{
+grid-template-columns:repeat(4,1fr)
+}
+
+.deals-grid{
+grid-template-columns:repeat(2,1fr)
+}
+
+}
+
+@media(max-width:650px){
+
+.nav a{
+display:none
+}
+
+.store-grid,
+.categories,
+.product-grid{
+grid-template-columns:repeat(2,1fr)
+}
+
+.deals-grid{
+grid-template-columns:1fr
+}
+
+.search{
+flex-direction:column
+}
+
+.search button{
+width:100%
+}
+
+.hero{
+padding-top:30px
+}
+
+.result{
+gap:10px
+}
+
+.result a{
+white-space:nowrap
+}
+
+}
 </style>
 </head>
+
 <body>
-<header><div class="nav"><div class="logo">شنوّة<span>؟</span> 🇹🇳</div><nav><a href="#stores">المتاجر</a><a href="#products">المنتجات</a><a href="#categories">التصنيفات</a><a href="#about">كيفاش نخدمو؟</a></nav></div></header>
+
+<header>
+<div class="nav">
+
+<div class="logo">
+شنوّة<span>؟</span> 🇹🇳
+</div>
+
+<nav>
+<a href="#deals">🔥 عروض اليوم</a>
+<a href="#stores">المتاجر</a>
+<a href="#products">المنتجات</a>
+<a href="#categories">التصنيفات</a>
+<a href="#about">كيفاش نخدمو؟</a>
+</nav>
+
+</div>
+</header>
+
 
 <section class="hero">
-<span class="badge">🇹🇳 مقارنة الأسعار في تونس</span>
-<h1>قبل ما تشري...<br><span>اعرف قدّاش تسوى.</span></h1>
-<p>ابحث عن منتج وشوف المتاجر التونسية التي توفره، ثم قارن الأسعار قبل الشراء.</p>
-<div class="search"><input id="mainSearch" placeholder="مثال: Samsung A56 أو iPhone 15 أو PS5" onkeydown="if(event.key==='Enter')searchProduct()"><button onclick="searchProduct()">🔎 قارن السعر</button></div>
+
+<span class="badge">
+🇹🇳 مقارنة الأسعار في تونس
+</span>
+
+<h1>
+قبل ما تشري...
+<br>
+<span>اعرف قدّاش تسوى.</span>
+</h1>
+
+<p>
+ابحث عن منتج وشوف المتاجر التونسية التي توفره،
+ثم قارن الأسعار قبل الشراء.
+</p>
+
+<div class="search">
+
+<input
+id="mainSearch"
+placeholder="مثال: Samsung A56 أو iPhone 15 أو PS5"
+onkeydown="if(event.key==='Enter')searchProduct()"
+>
+
+<button onclick="searchProduct()">
+🔎 قارن السعر
+</button>
+
+</div>
+
 </section>
 
+
 <main class="container">
-<section id="stores"><div class="section-head"><h2>🏪 أشهر المتاجر</h2><span class="muted" id="storeCount"></span></div><div class="store-grid" id="storeGrid"></div></section>
 
-<section id="categories" style="margin-top:38px"><div class="section-head"><h2>📂 التصنيفات</h2></div><div class="categories">
-<div class="cat" onclick="fillSearch('Smartphone')">📱 الهواتف</div>
-<div class="cat" onclick="fillSearch('PC')">💻 PC</div>
-<div class="cat" onclick="fillSearch('Gaming')">🎮 Gaming</div>
-<div class="cat" onclick="fillSearch('TV')">📺 TV</div>
-<div class="cat" onclick="fillSearch('Audio')">🎧 Audio</div>
-<div class="cat" onclick="fillSearch('Electroménager')">🏠 أجهزة منزلية</div>
-<div class="cat" onclick="fillSearch('Accessoires')">🔌 Accessoires</div>
-</div></section>
 
-<section id="products" style="margin-top:38px"><div class="section-head"><h2>🛍️ المنتجات والأقسام</h2></div><div class="product-grid" id="productGrid"></div></section>
+<!-- المتاجر -->
 
-<section class="compare" id="about"><h2>🔔 تابع السعر الذي تريده</h2><p>اكتب اسم المنتج والسعر الذي تريد الوصول إليه. هذه النسخة تسجل التنبيه كتجربة محلية.</p><div class="search"><input id="alertSearch" placeholder="مثال: أريد تنبيهًا عند نزول PS5 إلى 1800 د.ت"><button onclick="alertDemo()">إنشاء تنبيه 🔔</button></div><div id="alertMsg" style="margin-top:12px"></div></section>
+<section id="stores">
 
-<section class="results" id="results"><div class="section-head"><h2>🔎 نتائج البحث</h2></div><div id="resultList"></div></section>
+<div class="section-head">
+<h2>🏪 أشهر المتاجر</h2>
+<span class="muted" id="storeCount"></span>
+</div>
+
+<div class="store-grid" id="storeGrid"></div>
+
+</section>
+
+
+<!-- التصنيفات -->
+
+<section id="categories" style="margin-top:38px">
+
+<div class="section-head">
+<h2>📂 التصنيفات</h2>
+</div>
+
+<div class="categories">
+
+<div class="cat" onclick="fillSearch('Smartphone')">
+📱 الهواتف
+</div>
+
+<div class="cat" onclick="fillSearch('PC')">
+💻 PC
+</div>
+
+<div class="cat" onclick="fillSearch('Gaming')">
+🎮 Gaming
+</div>
+
+<div class="cat" onclick="fillSearch('TV')">
+📺 TV
+</div>
+
+<div class="cat" onclick="fillSearch('Audio')">
+🎧 Audio
+</div>
+
+<div class="cat" onclick="fillSearch('Electroménager')">
+🏠 أجهزة منزلية
+</div>
+
+<div class="cat" onclick="fillSearch('Accessoires')">
+🔌 Accessoires
+</div>
+
+</div>
+</section>
+
+
+<!-- المنتجات -->
+
+<section id="products" style="margin-top:38px">
+
+<div class="section-head">
+<h2>🛍️ المنتجات والأقسام</h2>
+</div>
+
+<div class="product-grid" id="productGrid"></div>
+
+</section>
+
+
+<!-- عروض اليوم -->
+
+<section id="deals" class="deals">
+
+<div class="section-head">
+
+<h2>🔥 عروض اليوم</h2>
+
+<span class="muted">
+عروض تجريبية
+</span>
+
+</div>
+
+<div class="deals-grid" id="dealsGrid"></div>
+
+</section>
+
+
+<!-- التنبيه -->
+
+<section class="compare" id="about">
+
+<h2>
+🔔 تابع السعر الذي تريده
+</h2>
+
+<p>
+اكتب اسم المنتج والسعر الذي تريد الوصول إليه.
+هذه النسخة تسجل التنبيه كتجربة محلية.
+</p>
+
+<div class="search">
+
+<input
+id="alertSearch"
+placeholder="مثال: أريد تنبيهًا عند نزول PS5 إلى 1800 د.ت"
+>
+
+<button onclick="alertDemo()">
+إنشاء تنبيه 🔔
+</button>
+
+</div>
+
+<div id="alertMsg" style="margin-top:12px"></div>
+
+</section>
+
+
+<!-- نتائج البحث -->
+
+<section class="results" id="results">
+
+<div class="section-head">
+<h2>🔎 نتائج البحث</h2>
+</div>
+
+<div id="resultList"></div>
+
+</section>
+
 </main>
-<footer>شنوّة؟ 🇹🇳 — منصة تونسية لمقارنة الأسعار والمتاجر</footer>
+
+
+<footer>
+شنوّة؟ 🇹🇳 — منصة تونسية لمقارنة الأسعار والمتاجر
+</footer>
+
 
 <script>
+
+/* =========================
+   المتاجر
+========================= */
+
 const stores=[
-{name:"Mytek",type:"High-Tech · Informatique · Électroménager",logo:"https://www.google.com/s2/favicons?domain=mytek.tn&sz=128",address:"17 Rue Energie Solaire, Z.I. Charguia 1, Tunis 2035",phone:"36 360 000",website:"https://www.mytek.tn/",products:["PC Portable","Smartphone","Gaming","TV","Imprimantes","Électroménager","Accessoires"]},
-{name:"Tunisianet",type:"Informatique · Smartphones · Électronique",logo:"https://www.google.com/s2/favicons?domain=tunisianet.com.tn&sz=128",address:"10 Rue Saint Augustin, 1002 Tunis",phone:"31 31 00 00",website:"https://www.tunisianet.com.tn/",products:["PC Portable","PC Gamer","Smartphone","Composants","Gaming","TV","Accessoires"]},
-{name:"Spacenet",type:"High-Tech · Informatique · Gaming",logo:"https://www.google.com/s2/favicons?domain=spacenet.tn&sz=128",address:"56 Rue de l'Industrie, Charguia I, 2035 Tunis",phone:"70 22 33 00",website:"https://spacenet.tn/",products:["PC","PC Gamer","Smartphone","Gaming","TV","Imprimantes","Accessoires"]},
-{name:"Mega-PC",type:"PC · Gaming · Composants",logo:"https://www.google.com/s2/favicons?domain=megapc.tn&sz=128",address:"6 Boulevard de l'Environnement, Tunis 2045",phone:"23 160 160",website:"https://www.megapc.tn/",products:["PC Gamer","PC Portable","Cartes graphiques","Processeurs","Composants","Accessoires Gaming"]},
-{name:"WIKI",type:"Informatique · High-Tech",logo:"https://www.google.com/s2/favicons?domain=wiki.tn&sz=128",address:"4 Rue des Entrepreneurs, Tunis",phone:"71 806 656",website:"https://wiki.tn/",products:["PC","Smartphone","Gaming","Accessoires","Électronique"]},
-{name:"Best Buy Tunisie",type:"High-Tech · Informatique · Gaming",logo:"https://www.google.com/s2/favicons?domain=bestbuytunisie.tn&sz=128",address:"Rue Baghdad, Avenue 5 Août, 3000 Sfax",phone:"20 854 000",website:"https://bestbuytunisie.tn/",products:["PC Portable","PC Gamer","iPhone","Smartphone","Gaming","TV","Électroménager"]},
-{name:"Carthago Informatique",type:"Informatique · High-Tech",logo:"https://www.google.com/s2/favicons?domain=carthagoinformatique.tn&sz=128",address:"Rue Abou El Kacem Chabbi, Sfax",phone:"74 226 612",website:"https://carthagoinformatique.tn/",products:["PC","Composants","Imprimantes","Accessoires","Gaming"]},
-{name:"Affariyet",type:"Informatique · Smartphones · Électroménager",logo:"https://www.google.com/s2/favicons?domain=affariyet.com&sz=128",address:"12 Rue de l'Artisanat, Tunis 2035",phone:"55 11 70 00",website:"https://www.affariyet.com/",products:["Smartphone","PC","TV","Climatiseur","Réfrigérateur","Machine à laver","Petit électroménager"]},
-{name:"Best Phone",type:"Smartphones · Tablettes · Ordinateurs",logo:"https://www.google.com/s2/favicons?domain=bestphone.tn&sz=128",address:"Route Teniour km 4, Sfax",phone:"58 005 800",website:"https://bestphone.tn/",products:["Smartphone","iPhone","Tablette","Laptop","PC","Smartwatch","Casques","Accessoires"]},
-{name:"ClickUP Shopping",type:"Informatique · Gaming · Électroménager",logo:"https://www.google.com/s2/favicons?domain=clickup.tn&sz=128",address:"Route de Tunis Km 0.5, Sfax 3003",phone:"23 425 425",website:"https://clickup.tn/",products:["PC Portable","PC Gamer","Smartphone","Gaming","Imprimantes","TV","Électroménager","Cuisine"]},
-{name:"Tokyo Store",type:"Électronique · High-Tech",logo:"https://www.google.com/s2/favicons?domain=tokyostore.tn&sz=128",address:"Tunisia Mall, Les Berges du Lac 2, Tunis",phone:"29 111 684",website:"https://tokyostore.tn/",products:["Électronique","Smartphone","Accessoires","Audio","High-Tech"]},
-{name:"FounaShop",type:"E-commerce · Produits divers",logo:"https://www.google.com/s2/favicons?domain=founa.com&sz=128",address:"68 Rue de l'Or, La Marsa",phone:"46 500 500",website:"https://founa.com/",products:["Maison","Électronique","Beauté","Accessoires","Produits divers"]},
-{name:"Batam",type:"Électroménager · Maison · Électronique",logo:"https://www.google.com/s2/favicons?domain=batam.com.tn&sz=128",address:"Tunisie",phone:"",website:"https://batam.com.tn/",products:["Réfrigérateur","Machine à laver","TV","Climatiseur","Cuisine","Maison"]},
-{name:"Tunewtec",type:"Informatique · Technologie · Accessoires",logo:"https://www.google.com/s2/favicons?domain=tunewtec.com&sz=128",address:"B4 et 12 Centre Galaxie 2000, Tunis 1002",phone:"71 280 145",website:"https://tunewtec.com/",products:["PC","Laptop","Smartphone","Accessoires","Réseaux","Imprimantes"]},
-{name:"INFOTEC",type:"Informatique · Gaming · Téléphonie · Électroménager",logo:"https://www.google.com/s2/favicons?domain=infotec.tn&sz=128",address:"Av. Jedida Magherbia, Nabeul 8000",phone:"72 224 494",website:"https://infotec.tn/",products:["PC","PC Gamer","Gaming","Smartphone","Réseaux","TV","Électroménager","Imprimantes"]},
-{name:"Maalej Audio",type:"TV · Audio · Smartphones · Électroménager",logo:"https://www.google.com/s2/favicons?domain=maalejaudio.tn&sz=128",address:"Av. 5 Août / Route de Teniour, Sfax 3000",phone:"28 241 888",website:"https://maalejaudio.tn/",products:["TV","Audio","Smartphone","Climatisation","Chauffage","Gros électroménager","Petit électroménager"]},
-{name:"Technopro / Oxtek",type:"Informatique · Smartphones · Accessoires",logo:"https://www.google.com/s2/favicons?domain=technopro-online.com&sz=128",address:"39 Rue Ibn Rachiq, Le Belvédère, Tunis",phone:"31 330 000",website:"https://www.technopro-online.com/",products:["PC Portable","PC Gamer","Smartphone","Souris","Claviers","Casques","Webcam","Accessoires"]}
+
+{
+name:"Mytek",
+type:"High-Tech · Informatique · Électroménager",
+logo:"https://www.google.com/s2/favicons?domain=mytek.tn&sz=128",
+address:"17 Rue Energie Solaire, Z.I. Charguia 1, Tunis 2035",
+phone:"36 360 000",
+website:"https://www.mytek.tn/",
+products:[
+"PC Portable",
+"Smartphone",
+"Gaming",
+"TV",
+"Imprimantes",
+"Électroménager",
+"Accessoires"
+]
+},
+
+{
+name:"Tunisianet",
+type:"Informatique · Smartphones · Électronique",
+logo:"https://www.google.com/s2/favicons?domain=tunisianet.com.tn&sz=128",
+address:"10 Rue Saint Augustin, 1002 Tunis",
+phone:"31 31 00 00",
+website:"https://www.tunisianet.com.tn/",
+products:[
+"PC Portable",
+"PC Gamer",
+"Smartphone",
+"Composants",
+"Gaming",
+"TV",
+"Accessoires"
+]
+},
+
+{
+name:"Spacenet",
+type:"High-Tech · Informatique · Gaming",
+logo:"https://www.google.com/s2/favicons?domain=spacenet.tn&sz=128",
+address:"56 Rue de l'Industrie, Charguia I, 2035 Tunis",
+phone:"70 22 33 00",
+website:"https://spacenet.tn/",
+products:[
+"PC",
+"PC Gamer",
+"Smartphone",
+"Gaming",
+"TV",
+"Imprimantes",
+"Accessoires"
+]
+},
+
+{
+name:"Mega-PC",
+type:"PC · Gaming · Composants",
+logo:"https://www.google.com/s2/favicons?domain=megapc.tn&sz=128",
+address:"6 Boulevard de l'Environnement, Tunis 2045",
+phone:"23 160 160",
+website:"https://www.megapc.tn/",
+products:[
+"PC Gamer",
+"PC Portable",
+"Cartes graphiques",
+"Processeurs",
+"Composants",
+"Accessoires Gaming"
+]
+},
+
+{
+name:"WIKI",
+type:"Informatique · High-Tech",
+logo:"https://www.google.com/s2/favicons?domain=wiki.tn&sz=128",
+address:"4 Rue des Entrepreneurs, Tunis",
+phone:"71 806 656",
+website:"https://wiki.tn/",
+products:[
+"PC",
+"Smartphone",
+"Gaming",
+"Accessoires",
+"Électronique"
+]
+},
+
+{
+name:"Best Buy Tunisie",
+type:"High-Tech · Informatique · Gaming",
+logo:"https://www.google.com/s2/favicons?domain=bestbuytunisie.tn&sz=128",
+address:"Rue Baghdad, Avenue 5 Août, 3000 Sfax",
+phone:"20 854 000",
+website:"https://bestbuytunisie.tn/",
+products:[
+"PC Portable",
+"PC Gamer",
+"iPhone",
+"Smartphone",
+"Gaming",
+"TV",
+"Électroménager"
+]
+},
+
+{
+name:"Carthago Informatique",
+type:"Informatique · High-Tech",
+logo:"https://www.google.com/s2/favicons?domain=carthagoinformatique.tn&sz=128",
+address:"Rue Abou El Kacem Chabbi, Sfax",
+phone:"74 226 612",
+website:"https://carthagoinformatique.tn/",
+products:[
+"PC",
+"Composants",
+"Imprimantes",
+"Accessoires",
+"Gaming"
+]
+},
+
+{
+name:"Affariyet",
+type:"Informatique · Smartphones · Électroménager",
+logo:"https://www.google.com/s2/favicons?domain=affariyet.com&sz=128",
+address:"12 Rue de l'Artisanat, Tunis 2035",
+phone:"55 11 70 00",
+website:"https://www.affariyet.com/",
+products:[
+"Smartphone",
+"PC",
+"TV",
+"Climatiseur",
+"Réfrigérateur",
+"Machine à laver",
+"Petit électroménager"
+]
+},
+
+{
+name:"Best Phone",
+type:"Smartphones · Tablettes · Ordinateurs",
+logo:"https://www.google.com/s2/favicons?domain=bestphone.tn&sz=128",
+address:"Route Teniour km 4, Sfax",
+phone:"58 005 800",
+website:"https://bestphone.tn/",
+products:[
+"Smartphone",
+"iPhone",
+"Tablette",
+"Laptop",
+"PC",
+"Smartwatch",
+"Casques",
+"Accessoires"
+]
+},
+
+{
+name:"ClickUP Shopping",
+type:"Informatique · Gaming · Électroménager",
+logo:"https://www.google.com/s2/favicons?domain=clickup.tn&sz=128",
+address:"Route de Tunis Km 0.5, Sfax 3003",
+phone:"23 425 425",
+website:"https://clickup.tn/",
+products:[
+"PC Portable",
+"PC Gamer",
+"Smartphone",
+"Gaming",
+"Imprimantes",
+"TV",
+"Électroménager",
+"Cuisine"
+]
+},
+
+{
+name:"Tokyo Store",
+type:"Électronique · High-Tech",
+logo:"https://www.google.com/s2/favicons?domain=tokyostore.tn&sz=128",
+address:"Tunisia Mall, Les Berges du Lac 2, Tunis",
+phone:"29 111 684",
+website:"https://tokyostore.tn/",
+products:[
+"Électronique",
+"Smartphone",
+"Accessoires",
+"Audio",
+"High-Tech"
+]
+},
+
+{
+name:"FounaShop",
+type:"E-commerce · Produits divers",
+logo:"https://www.google.com/s2/favicons?domain=founa.com&sz=128",
+address:"68 Rue de l'Or, La Marsa",
+phone:"46 500 500",
+website:"https://founa.com/",
+products:[
+"Maison",
+"Électronique",
+"Beauté",
+"Accessoires",
+"Produits divers"
+]
+},
+
+{
+name:"Batam",
+type:"Électroménager · Maison · Électronique",
+logo:"https://www.google.com/s2/favicons?domain=batam.com.tn&sz=128",
+address:"Tunisie",
+phone:"",
+website:"https://batam.com.tn/",
+products:[
+"Réfrigérateur",
+"Machine à laver",
+"TV",
+"Climatiseur",
+"Cuisine",
+"Maison"
+]
+},
+
+{
+name:"Tunewtec",
+type:"Informatique · Technologie · Accessoires",
+logo:"https://www.google.com/s2/favicons?domain=tunewtec.com&sz=128",
+address:"B4 et 12 Centre Galaxie 2000, Tunis 1002",
+phone:"71 280 145",
+website:"https://tunewtec.com/",
+products:[
+"PC",
+"Laptop",
+"Smartphone",
+"Accessoires",
+"Réseaux",
+"Imprimantes"
+]
+},
+
+{
+name:"INFOTEC",
+type:"Informatique · Gaming · Téléphonie · Électroménager",
+logo:"https://www.google.com/s2/favicons?domain=infotec.tn&sz=128",
+address:"Av. Jedida Magherbia, Nabeul 8000",
+phone:"72 224 494",
+website:"https://infotec.tn/",
+products:[
+"PC",
+"PC Gamer",
+"Gaming",
+"Smartphone",
+"Réseaux",
+"TV",
+"Électroménager",
+"Imprimantes"
+]
+},
+
+{
+name:"Maalej Audio",
+type:"TV · Audio · Smartphones · Électroménager",
+logo:"https://www.google.com/s2/favicons?domain=maalejaudio.tn&sz=128",
+address:"Av. 5 Août / Route de Teniour, Sfax 3000",
+phone:"28 241 888",
+website:"https://maalejaudio.tn/",
+products:[
+"TV",
+"Audio",
+"Smartphone",
+"Climatisation",
+"Chauffage",
+"Gros électroménager",
+"Petit électroménager"
+]
+},
+
+{
+name:"Technopro / Oxtek",
+type:"Informatique · Smartphones · Accessoires",
+logo:"https://www.google.com/s2/favicons?domain=technopro-online.com&sz=128",
+address:"39 Rue Ibn Rachiq, Le Belvédère, Tunis",
+phone:"31 330 000",
+website:"https://www.technopro-online.com/",
+products:[
+"PC Portable",
+"PC Gamer",
+"Smartphone",
+"Souris",
+"Claviers",
+"Casques",
+"Webcam",
+"Accessoires"
+]
+}
+
 ];
+
+
+/* =========================
+   المنتجات
+========================= */
 
 const products=[
-{name:"Smartphones",icon:"📱",description:"iPhone, Samsung, Xiaomi, Honor, Redmi وغيرها.",keyword:"Smartphone"},
-{name:"PC Portables",icon:"💻",description:"أجهزة محمولة للعمل والدراسة والألعاب.",keyword:"PC"},
-{name:"PC Gamer",icon:"🖥️",description:"أجهزة Gaming ومكونات الكمبيوتر.",keyword:"Gaming"},
-{name:"PlayStation & Gaming",icon:"🎮",description:"Consoles, manettes et accessoires.",keyword:"Gaming"},
-{name:"Téléviseurs",icon:"📺",description:"Smart TV و4K وLED.",keyword:"TV"},
-{name:"Audio",icon:"🎧",description:"Casques, écouteurs et haut-parleurs.",keyword:"Audio"},
-{name:"Électroménager",icon:"🏠",description:"ثلاجات وغسالات ومكيفات وأجهزة منزلية.",keyword:"Électroménager"},
-{name:"Accessoires",icon:"🔌",description:"Chargeurs, câbles, souris et claviers.",keyword:"Accessoires"}
+
+{
+name:"Smartphones",
+icon:"📱",
+description:"iPhone, Samsung, Xiaomi, Honor, Redmi وغيرها.",
+keyword:"Smartphone"
+},
+
+{
+name:"PC Portables",
+icon:"💻",
+description:"أجهزة محمولة للعمل والدراسة والألعاب.",
+keyword:"PC"
+},
+
+{
+name:"PC Gamer",
+icon:"🖥️",
+description:"أجهزة Gaming ومكونات الكمبيوتر.",
+keyword:"Gaming"
+},
+
+{
+name:"PlayStation & Gaming",
+icon:"🎮",
+description:"Consoles, manettes et accessoires.",
+keyword:"Gaming"
+},
+
+{
+name:"Téléviseurs",
+icon:"📺",
+description:"Smart TV و4K وLED.",
+keyword:"TV"
+},
+
+{
+name:"Audio",
+icon:"🎧",
+description:"Casques, écouteurs et haut-parleurs.",
+keyword:"Audio"
+},
+
+{
+name:"Électroménager",
+icon:"🏠",
+description:"ثلاجات وغسالات ومكيفات وأجهزة منزلية.",
+keyword:"Électroménager"
+},
+
+{
+name:"Accessoires",
+icon:"🔌",
+description:"Chargeurs, câbles, souris et claviers.",
+keyword:"Accessoires"
+}
+
 ];
 
-function renderStores(list=stores){
-const grid=document.getElementById("storeGrid");document.getElementById("storeCount").textContent=list.length+" متجر";
-if(!list.length){grid.innerHTML='<div class="empty">لم نجد متجرًا مطابقًا للبحث.</div>';return}
-grid.innerHTML=list.map(s=>`<article class="store-card"><div class="store-top"><img class="store-logo" src="${s.logo}" alt="${s.name}" onerror="this.style.display='none'"><div><h3 class="store-name">${s.name}</h3><div class="store-type">${s.type}</div></div></div><div class="store-info">📍 ${s.address}<br>☎️ ${s.phone||"الهاتف غير متوفر"}</div><div class="store-actions"><a class="website" href="${s.website}" target="_blank" rel="noopener">🌐 زيارة المتجر</a></div></article>`).join("");
+
+/* =========================
+   عروض اليوم
+========================= */
+
+const deals=[
+
+{
+name:"Samsung Galaxy A56",
+icon:"📱",
+oldPrice:1699,
+newPrice:1499,
+discount:"-12%",
+store:"Tunisianet",
+url:"https://www.tunisianet.com.tn/"
+},
+
+{
+name:"PC Portable Gaming",
+icon:"💻",
+oldPrice:2899,
+newPrice:2499,
+discount:"-14%",
+store:"Mytek",
+url:"https://www.mytek.tn/"
+},
+
+{
+name:"PlayStation 5",
+icon:"🎮",
+oldPrice:2299,
+newPrice:1999,
+discount:"-13%",
+store:"Spacenet",
+url:"https://spacenet.tn/"
+},
+
+{
+name:'Smart TV 55"',
+icon:"📺",
+oldPrice:2199,
+newPrice:1899,
+discount:"-14%",
+store:"Best Buy Tunisie",
+url:"https://bestbuytunisie.tn/"
 }
+
+];
+
+
+/* =========================
+   عرض المتاجر
+========================= */
+
+function renderStores(list=stores){
+
+const grid=document.getElementById("storeGrid");
+
+document.getElementById("storeCount").textContent=
+list.length+" متجر";
+
+if(!list.length){
+
+grid.innerHTML=
+'<div class="empty">لم نجد متجرًا مطابقًا للبحث.</div>';
+
+return;
+}
+
+grid.innerHTML=list.map(s=>`
+
+<article class="store-card">
+
+<div class="store-top">
+
+<img
+class="store-logo"
+src="${s.logo}"
+alt="${s.name}"
+onerror="this.style.display='none'"
+>
+
+<div>
+
+<h3 class="store-name">
+${s.name}
+</h3>
+
+<div class="store-type">
+${s.type}
+</div>
+
+</div>
+
+</div>
+
+<div class="store-info">
+
+📍 ${s.address}
+
+<br>
+
+☎️ ${s.phone||"الهاتف غير متوفر"}
+
+</div>
+
+<div class="store-actions">
+
+<a
+class="website"
+href="${s.website}"
+target="_blank"
+rel="noopener"
+>
+🌐 زيارة المتجر
+</a>
+
+</div>
+
+</article>
+
+`).join("");
+
+}
+
+
+/* =========================
+   عرض المنتجات
+========================= */
 
 function renderProducts(){
-document.getElementById("productGrid").innerHTML=products.map(p=>{let count=stores.filter(s=>s.products.some(x=>x.toLowerCase().includes(p.keyword.toLowerCase()))).length;return `<article class="product-card"><div class="product-icon">${p.icon}</div><h3>${p.name}</h3><p>${p.description}</p><div class="product-stores">🏪 حوالي ${count} متجرًا</div></article>`}).join("");
+
+document.getElementById("productGrid").innerHTML=
+
+products.map(p=>{
+
+let count=stores.filter(s=>
+s.products.some(x=>
+x.toLowerCase().includes(
+p.keyword.toLowerCase()
+)
+)
+).length;
+
+return `
+
+<article class="product-card">
+
+<div class="product-icon">
+${p.icon}
+</div>
+
+<h3>
+${p.name}
+</h3>
+
+<p>
+${p.description}
+</p>
+
+<div class="product-stores">
+🏪 حوالي ${count} متجرًا
+</div>
+
+</article>
+
+`;
+
+}).join("");
+
 }
+
+
+/* =========================
+   عرض عروض اليوم
+========================= */
+
+function renderDeals(){
+
+document.getElementById("dealsGrid").innerHTML=
+
+deals.map(d=>`
+
+<article class="deal-card">
+
+<span class="discount">
+${d.discount}
+</span>
+
+<div class="deal-top">
+
+<div class="deal-icon">
+${d.icon}
+</div>
+
+</div>
+
+<div class="deal-body">
+
+<h3 class="deal-name">
+${d.name}
+</h3>
+
+<div class="old-price">
+${d.oldPrice.toLocaleString("fr-FR")} د.ت
+</div>
+
+<div class="new-price">
+${d.newPrice.toLocaleString("fr-FR")} د.ت
+</div>
+
+<div class="deal-store">
+🏪 ${d.store}
+</div>
+
+<a
+class="deal-button"
+href="${d.url}"
+target="_blank"
+rel="noopener"
+>
+شاهد العرض 🌐
+</a>
+
+<div class="demo-note">
+⚠️ عرض تجريبي
+</div>
+
+</div>
+
+</article>
+
+`).join("");
+
+}
+
+
+/* =========================
+   البحث
+========================= */
 
 function searchProduct(){
-const q=document.getElementById("mainSearch").value.trim().toLowerCase();if(!q)return;
-const found=stores.filter(s=>(s.name+" "+s.type+" "+s.address+" "+s.products.join(" ")).toLowerCase().includes(q));
-document.getElementById("results").style.display="block";
-document.getElementById("resultList").innerHTML=found.length?found.map(s=>`<div class="result"><div><b>🏪 ${s.name}</b><div class="muted">${s.type}</div><div class="muted">📍 ${s.address}</div></div><a href="${s.website}" target="_blank">زيارة المتجر</a></div>`).join(""):`<div class="empty">لم نجد متجرًا مطابقًا لـ "<b>${q}</b>".<br>جرّب Samsung أو iPhone أو PC أو Gaming.</div>`;
-document.getElementById("results").scrollIntoView({behavior:"smooth"});
+
+const q=
+document.getElementById("mainSearch")
+.value
+.trim()
+.toLowerCase();
+
+if(!q)return;
+
+const found=stores.filter(s=>
+
+(
+s.name+" "+
+s.type+" "+
+s.address+" "+
+s.products.join(" ")
+)
+.toLowerCase()
+.includes(q)
+
+);
+
+document.getElementById("results")
+.style.display="block";
+
+document.getElementById("resultList").innerHTML=
+
+found.length?
+
+found.map(s=>`
+
+<div class="result">
+
+<div>
+
+<b>
+🏪 ${s.name}
+</b>
+
+<div class="muted">
+${s.type}
+</div>
+
+<div class="muted">
+📍 ${s.address}
+</div>
+
+</div>
+
+<a
+href="${s.website}"
+target="_blank"
+>
+زيارة المتجر
+</a>
+
+</div>
+
+`).join("")
+
+:
+
+`
+
+<div class="empty">
+
+لم نجد متجرًا مطابقًا لـ
+"<b>${q}</b>".
+
+<br>
+
+جرّب Samsung أو iPhone أو PC أو Gaming.
+
+</div>
+
+`;
+
+document.getElementById("results")
+.scrollIntoView({
+behavior:"smooth"
+});
+
 }
 
-function fillSearch(v){document.getElementById("mainSearch").value=v;searchProduct()}
-function alertDemo(){const v=document.getElementById("alertSearch").value.trim();document.getElementById("alertMsg").textContent=v?"✅ تم تسجيل طلب التنبيه في النسخة التجريبية: "+v:"⚠️ اكتب المنتج والسعر المطلوب."}
 
-renderStores();renderProducts();
+/* =========================
+   البحث من التصنيفات
+========================= */
+
+function fillSearch(v){
+
+document.getElementById("mainSearch").value=v;
+
+searchProduct();
+
+}
+
+
+/* =========================
+   التنبيه
+========================= */
+
+function alertDemo(){
+
+const v=
+document.getElementById("alertSearch")
+.value
+.trim();
+
+document.getElementById("alertMsg")
+.textContent=
+
+v?
+
+"✅ تم تسجيل طلب التنبيه في النسخة التجريبية: "+v
+
+:
+
+"⚠️ اكتب المنتج والسعر المطلوب.";
+
+}
+
+
+/* تشغيل الموقع */
+
+renderStores();
+
+renderProducts();
+
+renderDeals();
+
 </script>
+
 </body>
 </html>
