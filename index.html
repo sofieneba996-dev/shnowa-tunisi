@@ -44,4 +44,210 @@ section{padding:42px 0}.section-head{display:flex;align-items:end;justify-conten
 .heart{border:0;background:#f9fafb;border-radius:10px;padding:8px;cursor:pointer;font-size:17px}.heart.active{background:#fee4e2}
 .photo{height:190px;background:linear-gradient(135deg,#f4f3ff,#f8fafc);display:grid;place-items:center;overflow:hidden}
 .photo img{width:100%;height:100%;object-fit:contain;padding:13px}.photo .emoji{font-size:66px}
-.body{padding:15px}.name{font-weight:950;line-height:1.55;min-height:50px}.meta{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0}.pill{font-size:12px;font-weight:800;padding:6px 8px;border-radius:999px;background:#f2f4f7;color:#475467}.stock{color:var(--green);background:#ecfdf3}.price{font-size:25
+.body{padding:15px}.name{font-weight:950;line-height:1.55;min-height:50px}.meta{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0}.pill{font-size:12px;font-weight:800;padding:6px 8px;border-radius:999px;background:#f2f4f7;color:#475467}.stock{color:var(--green);background:#ecfdf3}.price{font-size:25px;font-weight:1000;margin:10px 0}.old{text-decoration:line-through;color:#98a2b3;font-size:13px;margin-right:5px}.saving{display:inline-block;color:#027a48;background:#ecfdf3;padding:6px 8px;border-radius:8px;font-size:12px;font-weight:900}
+.actions{display:flex;gap:7px;margin-top:13px}.actions>*{flex:1;text-align:center}.actions .btn{display:block}
+.store-grid{grid-template-columns:repeat(5,1fr)}.store-card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:17px;text-align:center}.logo-box{width:88px;height:58px;border-radius:15px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;margin:auto;font-weight:1000;font-size:20px;overflow:hidden}.logo-box img{max-width:82px;max-height:52px;width:auto;height:auto;object-fit:contain}.store-card h3{margin:11px 0 6px}.store-card p{font-size:12px;color:var(--muted);line-height:1.7;min-height:43px}
+.steps{grid-template-columns:repeat(4,1fr)}.step{background:#fff;border:1px solid var(--line);border-radius:17px;padding:20px}.stepnum{width:38px;height:38px;border-radius:12px;background:#ede9fe;color:#5b21b6;display:grid;place-items:center;font-weight:1000}
+.comparebar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:min(680px,92%);display:none;z-index:60;background:#111827;color:#fff;padding:12px 15px;border-radius:16px;box-shadow:0 18px 45px rgba(0,0,0,.22);align-items:center;justify-content:space-between;gap:12px}.comparebar.show{display:flex}
+.modal{position:fixed;inset:0;background:#0008;display:none;place-items:center;z-index:100;padding:20px}.modal.show{display:grid}.modal-box{width:min(850px,100%);max-height:85vh;overflow:auto;background:#fff;border-radius:20px;padding:20px}.modal-head{display:flex;justify-content:space-between;align-items:center}.modal-close{border:0;background:#f2f4f7;border-radius:10px;padding:8px;cursor:pointer}
+.compare-table{width:100%;border-collapse:collapse;margin-top:15px}.compare-table th,.compare-table td{padding:12px;border-bottom:1px solid var(--line);text-align:right}.compare-table th{background:#f9fafb}
+.empty{background:#fff;border:1px dashed #d0d5dd;border-radius:16px;padding:40px;text-align:center;color:var(--muted);grid-column:1/-1}
+footer{background:#111827;color:#fff;padding:40px 0;margin-top:20px}.foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:25px}.foot p{color:#98a2b3;line-height:1.8}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.hero-card{display:none}.layout{grid-template-columns:1fr}.side{position:static}.grid{grid-template-columns:repeat(2,1fr)}.store-grid{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.navlinks{display:none}.nav-actions .iconbtn{padding:9px}.filters{grid-template-columns:1fr}.grid,.store-grid,.steps,.foot{grid-template-columns:1fr}.categories{top:70px}h1{font-size:42px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#">شنوّة؟</a>
+  <div class="navlinks"><a href="#products">المنتجات</a><a href="#stores">المتاجر</a><a href="#how">كيفاش؟</a><a href="#contact">تواصل</a></div>
+  <div class="nav-actions"><button class="iconbtn" onclick="showFavorites()">❤️ المفضلة <span id="favCount">0</span></button></div>
+ </div>
+</header>
+
+<section class="hero">
+ <div class="wrap hero-grid">
+  <div>
+   <span class="badge">🇹🇳 مقارنة الأسعار في تونس</span>
+   <h1>شنوّة السعر الأرخص؟</h1>
+   <p>فتّش على المنتج، قارن الأسعار بين المتاجر، وشوف العرض الأصلي مباشرة من المتجر.</p>
+   <div class="searchbox"><input id="heroSearch" placeholder="مثال: iPhone 17، RTX 5060، PC Gamer..."><button class="btn primary" onclick="searchHero()">🔎 ابحث</button></div>
+   <div class="stats"><span class="stat">🏪 5 متاجر</span><span class="stat">🔄 نظام تحديث جاهز</span><span class="stat">⚖️ مقارنة مباشرة</span></div>
+  </div>
+  <div class="hero-card"><div class="big">⚡</div><h2>شنوّة v7</h2><p>واجهة جديدة أسرع وأسهل، مع بحث، تصفية، مفضلة ومقارنة المنتجات.</p><p>الأسعار والمخزون يتغيروا حسب المتجر، لذلك زر «شوف العرض» يفتح المصدر الأصلي.</p></div>
+ </div>
+</section>
+
+<div class="categories"><div class="wrap catbar" id="catbar"></div></div>
+
+<section id="products">
+ <div class="wrap">
+  <div class="section-head"><div><h2>🛍️ المنتجات</h2><div class="muted">هواتف + PC + Gaming + Projecteurs وغيرها</div></div><b id="count"></b></div>
+  <div class="layout">
+   <aside class="side">
+    <h3>التصنيفات</h3>
+    <button class="active" data-side="" onclick="setCat('')">الكل</button>
+    <div id="sideCats"></div>
+    <hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
+    <h3>المتاجر</h3>
+    <div id="sideStores"></div>
+   </aside>
+   <main>
+    <div class="filters">
+      <input id="q" placeholder="🔎 ابحث عن منتج...">
+      <select id="store"><option value="">كل المتاجر</option></select>
+      <select id="sort"><option value="relevance">الترتيب</option><option value="asc">السعر الأقل</option><option value="desc">السعر الأعلى</option><option value="saving">أكبر تخفيض</option></select>
+    </div>
+    <div class="grid" id="productsGrid"></div>
+   </main>
+  </div>
+ </div>
+</section>
+
+<section id="stores">
+ <div class="wrap">
+  <div class="section-head"><div><h2>🏪 المتاجر الموجودة</h2><div class="muted">مصادر المنتجات والأسعار</div></div></div>
+  <div class="grid store-grid" id="storesGrid"></div>
+ </div>
+</section>
+
+<section id="how">
+ <div class="wrap">
+  <div class="section-head"><h2>💡 كيفاش يخدم شنوّة؟</h2></div>
+  <div class="grid steps">
+   <div class="step"><div class="stepnum">1</div><h3>🔎 فتّش</h3><p class="muted">اكتب اسم المنتج أو الموديل.</p></div>
+   <div class="step"><div class="stepnum">2</div><h3>⚖️ قارن</h3><p class="muted">اختار المنتجات وقارن السعر والمتجر.</p></div>
+   <div class="step"><div class="stepnum">3</div><h3>❤️ احفظ</h3><p class="muted">احتفظ بالمنتجات المفضلة على جهازك.</p></div>
+   <div class="step"><div class="stepnum">4</div><h3>🛒 اشترِ</h3><p class="muted">انتقل إلى صفحة المنتج في المتجر الرسمي.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="wrap">
+  <div class="section-head"><h2>📧 تواصل</h2></div>
+  <div class="store-card" style="text-align:right">
+   <h3>شنوّة؟</h3>
+   <p class="muted">للتواصل حول الموقع، الشراكات أو إضافة متجر:</p>
+   <p><b>📩 sofieneba996@gmail.com</b></p>
+  </div>
+ </div>
+</section>
+
+<div class="comparebar" id="compareBar"><span>⚖️ <b id="compareCount">0</b> منتجات محددة للمقارنة</span><div><button class="btn soft" onclick="clearCompare()">مسح</button> <button class="btn primary" onclick="openCompare()">قارن الآن</button></div></div>
+
+<div class="modal" id="modal"><div class="modal-box"><div class="modal-head"><h2 id="modalTitle">المقارنة</h2><button class="modal-close" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
+
+<footer>
+ <div class="wrap foot">
+  <div><div class="brand">شنوّة؟</div><p>منصة تونسية لمقارنة الأسعار والعروض بين المتاجر.</p></div>
+  <div><h3>روابط</h3><p><a href="#products">المنتجات</a></p><p><a href="#stores">المتاجر</a></p></div>
+  <div><h3>ملاحظة</h3><p>السعر والمخزون يمكن أن يتبدلوا. تحقق دائمًا من صفحة المتجر قبل الشراء.</p></div>
+ </div>
+</footer>
+
+<script>
+const PRODUCTS=[
+ {id:"phone-tuni-s26",store:"Tunisianet",cat:"Smartphones",name:"Samsung Galaxy S26 5G / 12 Go / 256 Go / Violet",price:3999,old:null,img:"https://www.multimax.net/cdn/shop/files/001-galaxy-s26-cobaltviolet-front_600x.webp?v=1772222198",emoji:"📱",stock:"En stock",url:"https://www.tunisianet.com.tn/smartphone-tunisie/99026-smartphone-samsung-galaxy-s26-5g-12-go-256-go-violet.html",saving:""},
+ {id:"phone-tuni-a27",store:"Tunisianet",cat:"Smartphones",name:"Samsung Galaxy A27 5G 16/128 Go / Noir",price:1499,old:null,img:"https://www.vivacom.bg/upload/img_50014545_samsung_galaxy_a27_5g_6128gb_black_large_167071_20260709_101455.png",emoji:"📱",stock:"En stock",url:"https://www.tunisianet.com.tn/smartphone-tunisie/97855-smartphone-samsung-galaxy-a27-5g-16128-go-noir.html",saving:""},
+ {id:"phone-tuni-s25fe",store:"Tunisianet",cat:"Smartphones",name:"Samsung Galaxy S25 FE 5G / 8 Go / 256 Go / Black",price:2799,old:null,img:"https://smarterstore.it/media/catalog/product/cache/f2e5a07c6f0c65171e445e7997c32db2/8/8/8806097644729_1.png",emoji:"📱",stock:"En stock",url:"https://www.tunisianet.com.tn/smartphone-tunisie/89199-smartphone-samsung-galaxy-s25-fe-5g-8-go-256-go-black.html",saving:""},
+ {id:"phone-tuni-ip16",store:"Tunisianet",cat:"Smartphones",name:"Apple iPhone 16 256 Go 5G / Rose",price:4499,old:4699,img:"https://www.wootware.co.za/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-16-pink-0_1.jpg",emoji:"📱",stock:"Sur commande",url:"https://www.tunisianet.com.tn/smartphone-tunisie/79546-apple-iphone-16-256-go-5g-noir.html",saving:"-200 DT"},
+ {id:"phone-tuni-ip16pm",store:"Tunisianet",cat:"Smartphones",name:"Apple iPhone 16 Pro Max 5G / 256 Go / Noir",price:6199,old:7499,img:"https://mobilo4ka.ru/image/cache/6b208fe32fd0ad46a7084e647915547d.jpg",emoji:"📱",stock:"En stock",url:"https://www.tunisianet.com.tn/smartphone-tunisie/82165-apple-iphone-16-pro-max-5g-256-go-noir.html",saving:"-1300 DT"},
+ {id:"phone-tuni-ip17",store:"Tunisianet",cat:"Smartphones",name:"Apple iPhone 17 256 Go / Blanc",price:4699,old:4999,img:"https://assets.umart.com.au/newsite/images/202511/source_img/Mobile-Phone-Apple-iPhone-17-256GB-White-MG6K4X-A-4.jpg",emoji:"📱",stock:"Sur commande",url:"https://www.tunisianet.com.tn/97_apple?order=product.price.asc&page=4",saving:"-300 DT"},
+ {id:"phone-mytek-ip17",store:"Mytek",cat:"Smartphones",name:"iPhone 17 256Go Noir — APPLE",price:4699,old:null,img:"https://radius.uz/_next/image?q=75&url=https%3A%2F%2Fnew.api.radius.uz%2Fmedia%2Fthumbnails%2Fproducts%2FiPhone_17__-2_75b73f26_thumbnail_2048.webp&w=1024",emoji:"📱",stock:"En stock",url:"https://www.mytek.tn/iphone-17-256go-noir-apple.html",saving:""},
+ {id:"phone-mytek-ip17pro",store:"Mytek",cat:"Smartphones",name:"iPhone 17 Pro 256Go Silver — APPLE",price:5995,old:null,img:"https://estore.ua/media/catalog/product/i/p/iphone-17-pro-finish-select-202509-6-3inch-silver_1.png",emoji:"📱",stock:"En stock",url:"https://www.mytek.tn/iphone-17-pro-256go-silver-apple.html",saving:""},
+ {id:"mytek-p1",store:"Mytek",cat:"Projecteurs",name:"Mini Vidéo Projecteur LED Portable FHD LCD",price:119,old:null,img:"https://images.tcdn.com.br/img/img_prod/686482/mini_projetor_inteligente_com_android_espelha_celular_sjt_06_4451_4_0807a8d708e83955b9ce3c2695ba2b28.jpg",emoji:"📽️",stock:"En stock",url:"https://www.mytek.tn/image-son/projection/video-projecteurs.html",saving:"عرض"},
+ {id:"mytek-p2",store:"Mytek",cat:"Projecteurs",name:"Vidéo Projecteur MP-120 Android - Gris",price:349,old:null,img:"https://images.tcdn.com.br/img/img_prod/686482/mini_projetor_inteligente_com_android_espelha_celular_sjt_06_4451_4_0807a8d708e83955b9ce3c2695ba2b28.jpg",emoji:"📽️",stock:"En stock",url:"https://www.mytek.tn/video-projecteur-mp-120-android-gris.html",saving:"عرض"},
+ {id:"mytek-p3",store:"Mytek",cat:"Projecteurs",name:"Vidéo Projecteur MP-300 Android - Noir",price:499,old:null,img:"https://img.tvcmall.com/dynamic/uploads/details/740x740_6806010103A-2.webp",emoji:"📽️",stock:"En stock",url:"https://www.mytek.tn/video-projecteur-mp-300-android-noir.html",saving:"عرض"},
+ {id:"mytek-p4",store:"Mytek",cat:"PC de Bureau",name:"Pc de Bureau Pro MYTEK AMD Athlon 3000G 8Go 250Go SSD",price:859,old:null,img:"https://www.diagonalesinformatica.com.ar/Temp/App_WebSite/App_PictureFiles/Items/PC-Athlon-3000G-KIT_800.jpg",emoji:"🖥️",stock:"En stock",url:"https://www.mytek.tn/informatique/ordinateur-de-bureau/pc-de-bureau.html",saving:""},
+ {id:"mytek-p5",store:"Mytek",cat:"Gaming",name:"Pc de Bureau Gamer MYTEK AMD RYZEN 5 16Go RTX 3050 6G",price:2149,old:null,img:"https://mexx-img-2019.s3.amazonaws.com/48470_1.jpeg",emoji:"🎮",stock:"En arrivage",url:"https://www.mytek.tn/pc-de-bureau-gamer-mytek-amd-ryzen-5-16go-rtx-3050-6g.html",saving:""},
+ {id:"mega-p1",store:"Mega-PC",cat:"Gaming",name:"FULL SETUP GAMER PROMO V6 Q1 Ryzen 5 5600 + RTX 3050 + 16GB",price:2739,old:null,img:"https://productimages.hepsiburada.net/s/777/550/110000681261194.jpg",emoji:"🎮",stock:"En Stock",url:"https://megapc.tn/shop/product/ORDINATEURS/PC%20GAMER/FULL-SETUP-GAMER-PROMO-V6-Q1-AMD-5-5600-RTX-3050-16GB-Ram-NVMe-512-Go-Ecran-ASUS-TUF-X-Combo",saving:"PROMO"},
+ {id:"mega-p2",store:"Mega-PC",cat:"Composants",name:"AMD Ryzen 7 7700 TRAY",price:630,old:899,img:"https://pctec.uk/cdn/shop/files/7700_426f02b3-374e-41c7-ab8e-37eeb506eea3.webp?v=1771374536",emoji:"🧠",stock:"Hors Stock",url:"https://megapc.tn/shop/product/AMD-Ryzen-7-7700-TRAY",saving:"-269 DT"},
+ {id:"mega-p3",store:"Mega-PC",cat:"PC Portable",name:"ASUS ProArt P16 H7606WM-SR157 — Ryzen AI 9 HX 370 / RTX 5060 / 32GB / 1To",price:9650,old:null,img:"https://www.arlt.com/out/pictures/master/product/1/20804185000_01.jpg",emoji:"💻",stock:"متوفر حسب الصفحة",url:"https://www.megapc.tn/",saving:""},
+ {id:"mega-p4",store:"Mega-PC",cat:"PC Portable",name:"ASUS ProArt P16 H7606WX-SE045 — Ryzen AI 9 HX 370 / RTX 5090 / 64GB / 2TB",price:18899,old:null,img:"https://store.asus.com/jp/media/catalog/product/0/0/00_1stlook_5090_1500_h7606.jpg?bg-color=255&quality=100",emoji:"💻",stock:"En arrivage",url:"https://www.megapc.tn/",saving:""},
+ {id:"tuni-p1",store:"Tunisianet",cat:"Audio",name:"Écouteurs Sans Fil Setty TWS STWS-110 / Rose",price:null,old:69,img:"https://cdn.primini.tn/ecouteurs-sans-fil-setty-tws-rose-stws-110-1.jpg",emoji:"🎧",stock:"تحقق من المتجر",url:"https://www.tunisianet.com.tn/",saving:"عرض"},
+ {id:"tuni-p2",store:"Tunisianet",cat:"Audio",name:"Écouteurs Sans Fil Setty TWS-110 / Orange",price:null,old:69,img:"https://cdn.primini.tn/ecouteurs-sans-fil-setty-stws-110-orange-1.jpg",emoji:"🎧",stock:"تحقق من المتجر",url:"https://www.tunisianet.com.tn/",saving:"عرض"},
+ {id:"tuni-p3",store:"Tunisianet",cat:"Smartwatch",name:"Smartwatch Forever Colorum CW-300 / Orange",price:null,old:220,img:"https://m.media-amazon.com/images/I/61N1bnPtIHL._AC_SL1500_.jpg",emoji:"⌚",stock:"تحقق من المتجر",url:"https://www.tunisianet.com.tn/",saving:"عرض"},
+ {id:"space-p1",store:"SpaceNet",cat:"PC Portable",name:"BMAX MaxBook X15 Pro N95 / 12GB / 512GB",price:1169,old:1369,img:"https://www.arlt.com/out/pictures/master/product/1/20804185000_01.jpg",emoji:"💻",stock:"Prix indiqué par SpaceNet",url:"https://spacenet.tn/content/29-promotions",saving:"-200 DT"},
+ {id:"space-p2",store:"SpaceNet",cat:"PC Portable",name:"Dell Pro 15 Essential / Core 3 / 8GB / 512GB",price:1499,old:1699,img:"https://img.evetech.co.za/repository/mobilev1/Laptop/ProImages/dell-pro-15-essential-pv15250-intel-core-3-laptop-1500px-v1-0004.webp",emoji:"💻",stock:"Prix indiqué par SpaceNet",url:"https://spacenet.tn/content/29-promotions",saving:"-200 DT"},
+ {id:"scoop-p1",store:"Scoop Informatique",cat:"Accessoires",name:"MIKUSO Mouse — produit récent",price:24.9,old:null,img:"https://cdn.sahi.lk/mos-015u-wired-optical-mouse-3.jpg",emoji:"🖱️",stock:"حسب صفحة Scoop",url:"https://www.scoop.com.tn/",saving:""},
+ {id:"scoop-p2",store:"Scoop Informatique",cat:"Audio",name:"Gaming Headset — produit récent",price:29,old:null,img:"https://static.ticimax.cloud/64459/uploads/urunresimleri/buyuk/havit-gamenote-hg902d-rgb-mikronlu-oyu--2200-.jpg",emoji:"🎧",stock:"حسب صفحة Scoop",url:"https://www.scoop.com.tn/",saving:""}
+];
+
+const STORES=[
+ {name:"Mytek",logo:"https://ween.tn/media/cache/my_thumb_fb/uploads/image/49735/49733/avatar/avatar.png",desc:"PC, smartphones, gaming, TV، électroménager",url:"https://www.mytek.tn/"},
+ {name:"Tunisianet",logo:"https://cdn.primini.tn/0a94cf1e-8e35-4e2a-8121-f0f2dbfbaa33.jpg",desc:"Informatique, smartphones, accessoires وأكثر",url:"https://www.tunisianet.com.tn/"},
+ {name:"SpaceNet",logo:"https://www.keejob.com/media/recruiter/recruiter_25961/logo-25961-20240828-101744.png",desc:"High-Tech, gaming, TV، électroménager وغيرها",url:"https://spacenet.tn/"},
+ {name:"Scoop Informatique",logo:"https://ween.tn/media/cache/my_thumb_fb/uploads/image/49661/49659/avatar/avatar.png",desc:"PC, écrans, imprimantes, accessoires",url:"https://www.scoop.com.tn/"},
+ {name:"Mega-PC",logo:"https://files.kick.com/images/channel-links/1979790/image/conversion/fcb96afb-9947-49b5-920d-bd3b86760cc9-image.webp",desc:"Gaming, PC, composants، smartphones وأكثر",url:"https://megapc.tn/"}
+];
+
+const CATS=["الكل","Smartphones","PC Portable","PC de Bureau","Gaming","Composants","Smartphones","TV","Audio","Projecteurs","Accessoires","Smartwatch","Impression","Électroménager"];
+let category="", favorites=new Set(JSON.parse(localStorage.getItem("shnowa_fav")||"[]")), compare=new Set(JSON.parse(localStorage.getItem("shnowa_compare")||"[]"));
+
+function money(n){return n==null?"تحقق من المتجر":n.toLocaleString("fr-TN",{maximumFractionDigits:3})+" DT"}
+function saving(p){return p.old&&p.price?p.old-p.price:0}
+function setCat(c){category=c;renderCategory();render()}
+function renderCategory(){
+ document.querySelectorAll(".cat").forEach(x=>x.classList.toggle("active",x.dataset.cat===category));
+ document.querySelectorAll("[data-side]").forEach(x=>x.classList.toggle("active",x.dataset.side===category));
+}
+function productCard(p){
+ const fav=favorites.has(p.id), cmp=compare.has(p.id);
+ return `<article class="card">
+  <div class="card-top"><span class="store">${p.store}</span><button class="heart ${fav?"active":""}" onclick="toggleFav('${p.id}')">${fav?"❤️":"🤍"}</button></div>
+  <div class="photo">${p.img?`<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.remove();this.parentElement.insertAdjacentHTML('beforeend','<span class="emoji">${p.emoji}</span>')">`:`<span class="emoji">${p.emoji}</span>`}</div>
+  <div class="body">
+   <div class="name">${p.name}</div>
+   <div class="meta"><span class="pill">${p.cat}</span><span class="pill stock">● ${p.stock}</span></div>
+   <div class="price">${money(p.price)} ${p.old?`<span class="old">${money(p.old)}</span>`:""}</div>
+   ${p.saving?`<span class="saving">${p.saving}</span>`:""}
+   <div class="actions"><a class="btn primary" href="${p.url}" target="_blank" rel="noopener noreferrer" aria-label="شوف العرض الأصلي: ${p.name}">شوف العرض ↗</a><button class="btn soft" onclick="toggleCompare('${p.id}')">${cmp?"✓ مضاف":"⚖️ قارن"}</button></div>
+  </div>
+ </article>`
+}
+function render(){
+ const q=document.getElementById("q").value.trim().toLowerCase(), st=document.getElementById("store").value, sort=document.getElementById("sort").value;
+ let arr=PRODUCTS.filter(p=>(!category||p.cat===category)&&(!st||p.store===st)&&(!q||(p.name+" "+p.store+" "+p.cat).toLowerCase().includes(q)));
+ if(sort==="asc")arr.sort((a,b)=>(a.price??999999)-(b.price??999999));
+ if(sort==="desc")arr.sort((a,b)=>(b.price??-1)-(a.price??-1));
+ if(sort==="saving")arr.sort((a,b)=>saving(b)-saving(a));
+ document.getElementById("count").textContent=arr.length+" منتج";
+ document.getElementById("productsGrid").innerHTML=arr.length?arr.map(productCard).join(""):`<div class="empty">ما لقيناش منتجات بهذه المواصفات. جرّب بحث آخر.</div>`;
+ document.getElementById("favCount").textContent=favorites.size;
+ updateCompare();
+}
+function toggleFav(id){favorites.has(id)?favorites.delete(id):favorites.add(id);persist();render()}
+function toggleCompare(id){compare.has(id)?compare.delete(id):compare.add(id);persist();render()}
+function persist(){localStorage.setItem("shnowa_fav",JSON.stringify([...favorites]));localStorage.setItem("shnowa_compare",JSON.stringify([...compare]))}
+function updateCompare(){document.getElementById("compareCount").textContent=compare.size;document.getElementById("compareBar").classList.toggle("show",compare.size>0)}
+function clearCompare(){compare.clear();persist();render()}
+function openCompare(){
+ const arr=PRODUCTS.filter(p=>compare.has(p.id));
+ if(!arr.length)return;
+ document.getElementById("modalTitle").textContent="⚖️ مقارنة المنتجات";
+ document.getElementById("modalBody").innerHTML=`<table class="compare-table"><thead><tr><th>المنتج</th><th>المتجر</th><th>السعر</th><th>التخفيض</th><th>المخزون</th></tr></thead><tbody>${arr.map(p=>`<tr><td>${p.name}</td><td>${p.store}</td><td><b>${money(p.price)}</b></td><td>${p.saving||"—"}</td><td>${p.stock}</td></tr>`).join("")}</tbody></table>`;
+ document.getElementById("modal").classList.add("show");
+}
+function showFavorites(){
+ const arr=PRODUCTS.filter(p=>favorites.has(p.id));
+ document.getElementById("modalTitle").textContent="❤️ المفضلة";
+ document.getElementById("modalBody").innerHTML=arr.length?`<div class="grid">${arr.map(productCard).join("")}</div>`:`<div class="empty">ما عندك حتى منتج في المفضلة.</div>`;
+ document.getElementById("modal").classList.add("show");
+}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+function searchHero(){document.getElementById("q").value=document.getElementById("heroSearch").value;document.getElementById("products").scrollIntoView({behavior:"smooth"});render()}
+document.getElementById("heroSearch").addEventListener("keydown",e=>{if(e.key==="Enter")searchHero()});
+["q","store","sort"].forEach(id=>document.getElementById(id).addEventListener("input",render));
+
+document.getElementById("catbar").innerHTML=CATS.map(c=>`<button class="cat ${c==="الكل"?"active":""}" data-cat="${c==="الكل"?"":c}" onclick="setCat('${c==="الكل"?"":c}')">${c}</button>`).join("");
+document.getElementById("sideCats").innerHTML=CATS.slice(1).map(c=>`<button data-side="${c}" onclick="setCat('${c}')">${c}</button>`).join("");
+document.getElementById("sideStores").innerHTML=STORES.map(s=>`<button onclick="document.getElementById('store').value='${s.name}';render()">${s.name}</button>`).join("");
+STORES.forEach(s=>document.getElementById("store").insertAdjacentHTML("beforeend",`<option>${s.name}</option>`));
+document.getElementById("storesGrid").innerHTML=STORES.map(s=>`<div class="store-card"><div class="logo-box"><img src="${s.logo}" alt="${s.name} logo" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${s.name.slice(0,2).toUpperCase()}';"></div><h3>${s.name}</h3><p>${s.desc}</p><a class="btn primary" style="display:block" href="${s.url}" target="_blank" rel="noopener">زيارة المتجر ↗</a></div>`).join("");
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+render();
+</script>
+</body>
+</html>
